@@ -1,17 +1,20 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Kronix hub", "Ocean")
+local Window = Library.CreateLib("Kronix hub", "BloodTheme")
 
-local Tab = Window:NewTab("Basic")
+local Tab = Window:NewTab("Farming")
+local Tab2 = Window:NewTab("LocalPlayer")
 local Section = Tab:NewSection("Auto")
-local Section2 = Tab:NewSection("LocalPlayer")
+local Section2 = Tab2:NewSection("LocalPlayer")
 local speedtoggle = false
 local rebirthtoggle = false
 
 Section:NewToggle("Toggle Auto Speed", "ToggleSpeed", function(state)
+    speedtoggle = true
     if state then
         while speedtoggle == true do
         wait(0.1)
         game:GetService("ReplicatedStorage").Remotes.AddSpeed:FireServer()
+        game:GetService("ReplicatedStorage").Remotes.BoostX2:FireServer()
         end
     else
         speedtoggle = false
@@ -19,6 +22,7 @@ Section:NewToggle("Toggle Auto Speed", "ToggleSpeed", function(state)
 end)
 
 Section:NewToggle("Toggle Auto Rebirth", "ToggleRebirth", function(state)
+    rebirthtoggle = true
     if state then
         while rebirthtoggle == true do
         wait(0.1)
@@ -29,8 +33,8 @@ Section:NewToggle("Toggle Auto Rebirth", "ToggleRebirth", function(state)
     end
 end)
 
-Section2:NewSlider("WalkSpeed", "SlideWalkspeed", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+Section2:NewSlider("Health", "SlideHealth", 300, 100, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.Health = s
 end)
 
 Section2:NewSlider("JumpPower", "SlideJumpPower", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)

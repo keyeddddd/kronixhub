@@ -1,0 +1,31 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Kronix hub", "Ocean")
+
+local Tab = Window:NewTab("Basic")
+local Section = Tab:NewSection("Auto")
+local speedtoggle = false
+local rebirthtoggle = false
+
+Section:NewToggle("Toggle Auto Speed", "ToggleSpeed", function(state)
+    speedtoggle = true
+    if state then
+        while speedtoggle == true do
+        wait(0.1)
+        game:GetService("ReplicatedStorage").Remotes.AddSpeed:FireServer()
+        end
+    else
+        speedtoggle = false
+    end
+end)
+
+Section:NewToggle("Toggle Auto Rebirth", "ToggleRebirth", function(state)
+    rebirthtoggle = true
+    if state then
+        while rebirthtoggle == true do
+        wait(0.1)
+        game:GetService("ReplicatedStorage").Remotes.Rebirth:FireServer()
+        end
+    else
+        rebirthtoggle = false
+    end
+end)
